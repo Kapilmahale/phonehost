@@ -1,69 +1,174 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-const token = localStorage.getItem("token");
-
 
 function Dashboard() {
-  const [sites,setSites] = useState([]);
+
+  const [sites, setSites] = useState([]);
+  const [stats, setStats] = useState(null);
 
   const fetchSites = async () => {
+    try {
 
-    const token =localStorage.getItem("token");
+      const token =
+        localStorage.getItem("token");
 
-    const res = await axios.get("http://localhost:5000/api/deploy", {
-      headers: { Authorization: token }
-    });
+      const res = await axios.get(
+        "http://localhost:5000/api/deploy",
+        {
+          headers: {
+            Authorization: token
+          }
+        }
+      );
 
-    setSites(res.data);
+      setSites(res.data);
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  useEffect(() => {fetchSites();}, []);
+  const fetchStats = async () => {
+    try {
 
-  const deleteSite =async(id)=>{
+      const token =
+        localStorage.getItem("token");
 
-    await axios.delete(`http://localhost:5000/api/deploy/${id}`,
-    {
-    headers:{ Authorization:token}
-    });
+      const res = await axios.get(
+        "http://localhost:5000/api/stats",
+        {
+          headers: {
+            Authorization: token
+          }
+        }
+      );
+
+      console.log("Stats:", res.data);
+
+      setStats(res.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
 
     fetchSites();
+    fetchStats();
+
+    const interval =
+      setInterval(fetchStats, 5000);
+
+    return () =>
+      clearInterval(interval);
+
+  }, []);
+
+  const deleteSite = async (id) => {
+
+    try {
+
+      const token =
+        localStorage.getItem("token");
+
+      await axios.delete(
+        `http://localhost:5000/api/deploy/${id}`,
+        {
+          headers: {
+            Authorization: token
+          }
+        }
+      );
+
+      fetchSites();
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-  <div style={{ maxWidth: "900px", margin: "auto",padding: "20px", }}>
-    <h2>PhoneHost</h2>
+    <div
+      style={{
+        maxWidth: "900px",
+        margin: "auto",
+        padding: "20px"
+      }}
+    >
 
-    <h2>My Deployments</h2>
+      <h2>PhoneHost</h2>
 
-    {sites.length === 0 ? (
-      <p>No deployments found.</p>
-    ) : (
-      sites.map((site) => (
-        <div key={site._id} style={{
+      {stats && (
+        <div
+          style={{
             border: "1px solid #ddd",
-            borderRadius: "10px",
             padding: "15px",
-            marginBottom: "15px",
-          }} >
+            borderRadius: "10px",
+            marginBottom: "20px"
+          }}
+        >
+          <h2>Server Stats</h2>
 
-          <h3>{site.projectName}</h3>
+          <p>
+            CPU Usage: {stats.cpu}%
+          </p>
 
-          <p>{site.deployedUrl}</p>
+          <p>
+            RAM Usage: {stats.ram}%
+          </p>
 
-          <a href={site.deployedUrl} target="_blank" rel="noreferrer">
-            Visit Site
-          </a>
+          <p>
+            Uptime: {stats.uptime}
+          </p>
 
-          <br />
-          <br />
-
-          <button onClick={() => deleteSite(site._id) }>
-            Delete
-          </button>
         </div>
-      ))
-    )}
-  </div>
+      )}
+
+      <h2>My Deployments</h2>
+
+      {sites.length === 0 ? (
+        <p>No deployments found.</p>
+      ) : (
+        sites.map((site) => (
+          <div
+            key={site._id}
+            style={{
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              padding: "15px",
+              marginBottom: "15px"
+            }}
+          >
+
+            <h3>{site.projectName}</h3>
+
+            <p>{site.deployedUrl}</p>
+
+            <a
+              href={site.deployedUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Site
+            </a>
+
+            <br />
+            <br />
+
+            <button
+              onClick={() =>
+                deleteSite(site._id)
+              }
+            >
+              Delete
+            </button>
+
+          </div>
+        ))
+      )}
+
+    </div>
   );
 }
 

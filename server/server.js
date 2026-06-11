@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const testRoutes = require("./routes/testRoutes");
 const deployRoutes = require("./routes/deployRoutes");
+const statsRoutes =require("./routes/statsRoutes");
 
 
 const app = express();
@@ -22,12 +23,13 @@ app.use("/api/deploy",deployRoutes);
 app.get("/", (req, res) => {res.send("Backend Running");});
 
 app.use("/sites",express.static("websites"));
+app.use("/api/stats",statsRoutes);
 
-app.get("/api/message", (req, res) => {
-  res.json({
-    message: "Hello from Express"
-  });
-});
+// app.get("/api/message", (req, res) => {
+//   res.json({
+//     message: "Hello from Express"
+//   });
+// });
 
 app.listen( process.env.PORT || 5000,
   () => {
