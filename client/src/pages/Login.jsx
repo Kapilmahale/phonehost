@@ -1,39 +1,37 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import {GoogleLogin} from "@react-oauth/google";
-import { API_URL } from "../config";  
-import Dashboard from "./Dashboard";  
+// import {GoogleLogin} from "@react-oauth/google";
+// import { API_URL } from "../config";  
+// import Dashboard from "./Dashboard";  
 
+// const googleSuccess =async(response)=>{
+//   try{
 
+//    const res =await axios.post( `/api/auth/google`,
+//     {
+//       credential:
+//       response.credential
+//     }
+
+//    );
+
+//    localStorage.setItem( "token", res.data.token);
+
+//    console.log(res.data);
+
+//    navigate( "/dashboard");
+//  }
+//  catch(error){
+//    console.log(error);
+//  }
+
+// };
 
 function Login() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ email: "",password: ""});
-
-  const googleSuccess =async(response)=>{
-  try{
-
-   const res =await axios.post( `/api/auth/google`,
-    {
-      credential:
-      response.credential
-    }
-
-   );
-
-   localStorage.setItem( "token", res.data.token);
-
-   console.log(res.data);
-
-   navigate( "/dashboard");
- }
- catch(error){
-   console.log(error);
- }
-
-};
 
   const handleChange = (e) => {
     setForm({
@@ -94,14 +92,14 @@ function Login() {
       
       <hr />
 
-      <h3> Sign in with Google </h3>
+      {/* <h3> Sign in with Google </h3>
 
       <GoogleLogin onSuccess={googleSuccess}  onError={()=>{
          console.log(
            "Google Login Failed"
          );
        }}
-     />
+     /> */}
 
       <p style={{ marginTop: "15px" }}>
         Don't have an account?{" "}
