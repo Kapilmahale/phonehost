@@ -1,6 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 
+import "./Dashboard.css";
+import { FaRocket} from "react-icons/fa";
+import {
+  HiOutlineDocumentText,
+  HiOutlinePaperAirplane,
+  HiOutlineArrowRightOnRectangle,
+} from "react-icons/hi2";
+
+
+
 const logout = () => {
   localStorage.removeItem("token");
   window.location.href = "/login";
@@ -38,24 +48,37 @@ function Deploy() {
     };
 
   return (
-    <div>
-      <h1>
-        Deploy Website
-      </h1>
+  <div className="top-actions">
 
-      <input type="file" onChange={(e) => setFile( e.target.files[0])}/>
+    <div className="hero">
+          <h1>
+            <FaRocket /> Deploy <span>Website</span>
+          </h1>
+        </div>
 
-      <button style={{background:"purple"}} onClick={deploySite}> Deploy </button>
+    <input
+      type="file"
+      onChange={(e) =>
+        setFile(e.target.files[0])
+      }
+    />
 
-      { url && (<a href={url} target="_blank" rel="noreferrer">
-      Open Website </a> )}
-
-      <button onClick={logout} color="red" style={{marginTop: "20px",marginLeft: "10px",}}>
-      Logout 
+    <button
+      className="action-btn deploy-btn"
+      onClick={deploySite}
+    >
+      Deploy
     </button>
 
-    </div>
-  );
+    <button
+      className="action-btn logout-btn"
+      onClick={logout}
+    >
+      Logout
+    </button>
+
+  </div>
+);
 }
 
 export default Deploy;

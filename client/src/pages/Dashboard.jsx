@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import "./Dashboard.css";
+
+import { FaRocket,FaServer,FaTrash,FaExternalLinkAlt,FaMicrochip, FaClock}
+ from "react-icons/fa";
+
 function Dashboard() {
 
   const [sites, setSites] = useState([]);
@@ -89,89 +94,84 @@ function Dashboard() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "auto",
-        padding: "20px"
-      }}
-    >
+  <div className="dashboard">
 
-      <h2>PhoneHost</h2>
+    <div className="section-title">
+      <FaServer /> PhoneHost
+    </div>
 
-      {stats && (
-        <div
-          style={{
-            border: "1px solid #ddd",
-            padding: "15px",
-            borderRadius: "10px",
-            marginBottom: "20px"
-          }}
-        >
-          <h2>Server Stats</h2>
+    {stats && (
+      <div className="stats-card">
 
-          <p>
-            CPU Usage: {stats.cpu}%
-          </p>
+        <div className="stats-heading">
+          Server Stats
+        </div>
 
-          <p>
-            RAM Usage: {stats.ram}%
-          </p>
+        <div className="stats-line"></div>
 
-          <p>
-            Uptime: {stats.uptime}
-          </p>
+        <div className="stats-grid">
+
+          <div className="stat-box">
+            <FaMicrochip size={35}/>
+            <h3>CPU Usage</h3>
+            <p>{stats.cpu}%</p>
+          </div>
+
+          <div className="stat-box">
+            <FaMicrochip size={35}/>
+            <h3>RAM Usage</h3>
+            <p>{stats.ram}%</p>
+          </div>
+
+          <div className="stat-box">
+            <FaClock size={35}/>
+            <h3>Uptime</h3>
+            <p>{stats.uptime}</p>
+          </div>
 
         </div>
-      )}
+      </div>
+    )}
 
-      <h2>My Deployments</h2>
-
-      {sites.length === 0 ? (
-        <p>No deployments found.</p>
-      ) : (
-        sites.map((site) => (
-          <div
-            key={site._id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-              padding: "15px",
-              marginBottom: "15px"
-            }}
-          >
-
-            <h3>{site.projectName}</h3>
-
-            <p>{site.deployedUrl}</p>
-
-            <a
-              href={site.deployedUrl}
-              target="_blank"
-              rel="noreferrer"
-              style={{color:"blueviolet"}}
-            >
-              Visit Site
-            </a>
-
-            <br />
-            <br />
-
-            <button
-              onClick={() =>
-                deleteSite(site._id)
-              }
-              style={{background:"Red"}}
-            >
-              Delete
-            </button>
-
-          </div>
-        ))
-      )}
-
+    <div className="section-title">
+      My Deployments
     </div>
-  );
+
+    <div className="deployments">
+      {sites.map((site) => (
+        <div
+          className="site-card"
+          key={site._id}
+        >
+          <h3>{site.projectName}</h3>
+
+          <p className="site-url">
+            {site.deployedUrl}
+          </p>
+
+          <a
+            className="visit-link"
+            href={site.deployedUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visit Site <FaExternalLinkAlt />
+          </a>
+
+          <br />
+
+          <button
+            className="delete-btn"
+            onClick={() => deleteSite(site._id)}
+          >
+            <FaTrash /> Delete
+          </button>
+        </div>
+      ))}
+    </div>
+
+  </div>
+);
 }
 
 export default Dashboard;

@@ -1,0 +1,282 @@
+/* Global */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f7fc;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Dashboard Container */
+
+.dashboard {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+/* Header */
+
+.hero {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  font-size: 60px;
+  font-weight: 700;
+  color: #111827;
+
+  margin: 0;
+}
+
+.hero span {
+  color: #7c4dff;
+}
+
+/* Top Buttons */
+
+.top-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.file-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 22px;
+  border: 1px solid #8b5cf6;
+  border-radius: 10px;
+
+  background: white;
+  color: #6d28d9;
+
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.file-btn:hover {
+  background: #f3f0ff;
+}
+
+.file-name {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.deploy-btn {
+  border: none;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,
+    #6d28d9
+  );
+}
+
+.deploy-btn:hover {
+  opacity: 0.9;
+}
+
+.logout-btn {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.logout-btn:hover {
+  background: #f9fafb;
+}
+
+/* Section Titles */
+
+.section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 34px;
+  font-weight: 600;
+
+  color: #1f2937;
+  margin-bottom: 25px;
+}
+
+/* Stats Card */
+
+.stats-card {
+  background: white;
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.05);
+
+  margin-bottom: 40px;
+}
+
+.stats-heading {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.stats-line {
+  width: 45px;
+  height: 4px;
+
+  margin: 12px auto 30px;
+
+  background: #7c4dff;
+  border-radius: 999px;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-box {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-box h3 {
+  color: #6b7280;
+  margin: 12px 0 8px;
+  font-size: 16px;
+}
+
+.stat-box p {
+  color: #7c4dff;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Deployment Cards */
+
+.deployments {
+  margin-top: 20px;
+}
+
+.site-card {
+  background: white;
+
+  border-radius: 22px;
+
+  padding: 35px;
+
+  text-align: center;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.05);
+
+  margin-bottom: 25px;
+}
+
+.site-card h3 {
+  font-size: 34px;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+.site-url {
+  color: #6b7280;
+  margin-bottom: 18px;
+
+  word-break: break-all;
+}
+
+.visit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #7c4dff;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.visit-link:hover {
+  text-decoration: underline;
+}
+
+/* Delete Button */
+
+.delete-btn {
+  padding: 12px 26px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ef4444;
+  background: white;
+
+  color: #ef4444;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .site-card h3 {
+    font-size: 24px;
+  }
+}

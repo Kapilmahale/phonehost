@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import {GoogleLogin} from "@react-oauth/google";
-
 import Dashboard from "./Dashboard";  
 
-
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -59,54 +59,58 @@ function Login() {
   };
 
   return (
-    <div style={{
-        maxWidth: "400px",
-        margin: "100px auto",
-        padding: "20px",
-        border: "1px solid #0d0d0d",
-        borderRadius: "10px",
-      }}
-    >
-      <h2>Login</h2>
+    <div className="login-container">
+      <div className="login-card">
 
-      <form onSubmit={handleSubmit}>
-        <input name="email" placeholder="Email" value={form.email} onChange={handleChange}
-          style={{
-            width: "90%",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
-        />
+        <div className="login-icon">🔐</div>
 
-        <input name="password" type="password" placeholder="Password"
-          value={form.password} onChange={handleChange}
-          style={{
-            width: "90%",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
-        />
+        <div className="login-title">Login</div>
 
-        <button type="submit" style={{ width: "90%", padding: "10px",background:"green"}}>
-          Login
-        </button>
-      </form>
-      
-      <hr />
+        <div className="title-line"></div>
 
-      <h3> Sign in with Google </h3>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </div>
 
-      <GoogleLogin onSuccess={googleSuccess}  onError={()=>{
-         console.log(
-           "Google Login Failed"
-         );
-       }}
-     />
+          <div className="input-group">
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+            />
+          </div>
 
-      <p style={{ marginTop: "15px" }}>
-        Don't have an account?{" "}
-        <Link to="/register" style={{color:"blueviolet"}}> Register </Link>
-      </p>
+          <button className="login-btn" type="submit">
+            Login
+          </button>
+        </form>
+
+        <div className="divider">
+          <hr />
+          <span>OR</span>
+        </div>
+
+        <div className="google-section">
+          <h3>Sign in with Google</h3>
+          <GoogleLogin
+            onSuccess={googleSuccess}
+            onError={() => console.log("Google Login Failed")}
+          />
+        </div>
+
+        <p className="register-link">
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
+
+      </div>
     </div>
   );
 }

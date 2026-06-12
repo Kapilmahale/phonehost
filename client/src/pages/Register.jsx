@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import "./Login.css";
+
 function Register() {
   const navigate = useNavigate();
 
@@ -34,20 +37,67 @@ function Register() {
     };
 
   return (
-    <form onSubmit={handleSubmit}>
+     <div className="login-container">
+      <div className="login-card">
 
-      <input name="name" placeholder="Name" onChange={handleChange}/>
+        <div className="login-icon">👤</div>
 
-      <input name="email" placeholder="Email"
-        onChange={handleChange} />
+        <div className="login-title">
+          Register
+        </div>
 
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} />
+        <div className="title-line"></div>
 
-      <button> Register </button>
+        <form onSubmit={handleSubmit}>
 
-      <p> Already have an account? <Link to="/login"> Login </Link> </p>
+          <div className="input-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={form.name}
+              onChange={handleChange}
+            />
+          </div>
 
-    </form>
+          <div className="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="login-btn"
+          >
+            Register
+          </button>
+
+        </form>
+
+        <p className="register-link">
+          Already have an account?{" "}
+          <Link to="/login">
+            Login
+          </Link>
+        </p>
+
+      </div>
+    </div>
   );
 }
 
