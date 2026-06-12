@@ -94,14 +94,14 @@ function Login() {
       
       <hr />
 
-      {/* <h3> Sign in with Google </h3>
+      <h3> Sign in with Google </h3>
 
       <GoogleLogin onSuccess={googleSuccess}  onError={()=>{
          console.log(
            "Google Login Failed"
          );
        }}
-     /> */}
+     />
 
       <p style={{ marginTop: "15px" }}>
         Don't have an account?{" "}
