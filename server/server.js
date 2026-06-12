@@ -27,6 +27,10 @@ app.use("/api/stats",statsRoutes);
 
 app.use("/sites",express.static("websites"));
 
+app.get("/health", (req, res) => {
+  res.send("Server Working");
+});
+
 //react build
 app.use( express.static( path.join(__dirname,"../client/dist" )));
 
@@ -38,7 +42,7 @@ app.use((req, res) => { res.sendFile(
 });
 
 
-app.listen( process.env.PORT || 5000, () => {
+app.listen(5000, () => {
     console.log("Server Running");
   }
 );
