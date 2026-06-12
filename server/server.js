@@ -27,6 +27,10 @@ app.use("/api/stats",statsRoutes);
 
 app.use("/sites",express.static("websites"));
 
+console.log(
+  path.join(__dirname, "../client/dist")
+);
+
 app.get("/health", (req, res) => {
   res.send("Server Working");
 });
