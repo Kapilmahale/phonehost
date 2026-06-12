@@ -5,7 +5,7 @@ const path = require("path");
 const fs = require("fs");
 
 const auth =require("../middleware/authMiddleware");
-const Site = require("../models/Site");
+const Site = require("../models/site");
 
 const router = express.Router();
 
