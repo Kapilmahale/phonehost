@@ -13,7 +13,7 @@ function Dashboard() {
         localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/deploy",
+        "/api/deploy",
         {
           headers: {
             Authorization: token
@@ -35,7 +35,7 @@ function Dashboard() {
         localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/stats",
+        "/api/stats",
         {
           headers: {
             Authorization: token
@@ -73,7 +73,7 @@ function Dashboard() {
         localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/deploy/${id}`,
+        `/api/deploy/${id}`,
         {
           headers: {
             Authorization: token
@@ -149,6 +149,7 @@ function Dashboard() {
               href={site.deployedUrl}
               target="_blank"
               rel="noreferrer"
+              style={{color:"blueviolet"}}
             >
               Visit Site
             </a>
@@ -160,6 +161,7 @@ function Dashboard() {
               onClick={() =>
                 deleteSite(site._id)
               }
+              style={{background:"Red"}}
             >
               Delete
             </button>

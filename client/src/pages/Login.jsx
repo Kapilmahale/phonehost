@@ -8,7 +8,7 @@ import Dashboard from "./Dashboard";
 const googleSuccess =async(response)=>{
   try{
 
-   const res =await axios.post( `${API_URL}/api/auth/google`,
+   const res =await axios.post( `/api/auth/google`,
     {
       credential:
       response.credential
@@ -45,7 +45,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login", form );
+        "/api/auth/login", form );
 
       localStorage.setItem("token", res.data.token);
 
@@ -61,7 +61,7 @@ function Login() {
         maxWidth: "400px",
         margin: "100px auto",
         padding: "20px",
-        border: "1px solid #ddd",
+        border: "1px solid #0d0d0d",
         borderRadius: "10px",
       }}
     >
@@ -70,7 +70,7 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <input name="email" placeholder="Email" value={form.email} onChange={handleChange}
           style={{
-            width: "100%",
+            width: "90%",
             padding: "10px",
             marginBottom: "10px",
           }}
@@ -79,13 +79,13 @@ function Login() {
         <input name="password" type="password" placeholder="Password"
           value={form.password} onChange={handleChange}
           style={{
-            width: "100%",
+            width: "90%",
             padding: "10px",
             marginBottom: "10px",
           }}
         />
 
-        <button type="submit" style={{ width: "100%", padding: "10px",}}>
+        <button type="submit" style={{ width: "90%", padding: "10px",background:"green"}}>
           Login
         </button>
       </form>
@@ -103,7 +103,7 @@ function Login() {
 
       <p style={{ marginTop: "15px" }}>
         Don't have an account?{" "}
-        <Link to="/register"> Register </Link>
+        <Link to="/register" style={{color:"blueviolet"}}> Register </Link>
       </p>
     </div>
   );

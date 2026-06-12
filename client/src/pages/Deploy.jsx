@@ -22,7 +22,7 @@ function Deploy() {
 
         formData.append("project",file);
 
-        const res =await axios.post( "http://localhost:5000/api/deploy",formData, {
+        const res =await axios.post( "/api/deploy",formData, {
         headers:{Authorization:token}
       }
 
@@ -45,7 +45,7 @@ function Deploy() {
 
       <input type="file" onChange={(e) => setFile( e.target.files[0])}/>
 
-      <button onClick={deploySite}> Deploy </button>
+      <button style={{background:"purple"}} onClick={deploySite}> Deploy </button>
 
       { url && (<a href={url} target="_blank" rel="noreferrer">
       Open Website </a> )}
