@@ -23,9 +23,16 @@ function Login() {
 
    );
 
+   console.log("Google Response:", res.data);
+   console.log("Token:", res.data.token);
+
+
    localStorage.setItem( "token", res.data.token);
 
    console.log(res.data);
+
+   console.log( "Stored Token:", localStorage.getItem("token")
+);
 
    navigate( "/dashboard");
  }
