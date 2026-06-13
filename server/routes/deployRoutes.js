@@ -72,49 +72,64 @@ router.post("/", auth,upload.single("project"),
 
       zip.extractAllTo(targetFolder,true);
 
-      /*
-      --------------------------------
-      DEPLOYMENT URL
-      --------------------------------
-      */
+/*
+--------------------------------
+DEPLOYMENT URL
+--------------------------------
+*/
 
-      const extractedItems =fs.readdirSync(targetFolder);
+// Default deployment URL
+let deployedUrl =
+`${req.protocol}://${req.get("host")}/sites/${projectName}`;
 
-      if(extractedItems.length === 1){
-      
-         const firstFolder =
-         path.join(
-            targetFolder,
-            extractedItems[0]
-         );
-       
-         if(
-            fs.statSync(firstFolder)
-            .isDirectory()
-         ){
-           const deployedUrl = `${req.protocol}://${req.get("host")}/sites/${projectName}`;
-         }
-      }
+const extractedItems =
+fs.readdirSync(targetFolder);
 
-      const deployedUrl = `${req.protocol}://${req.get("host")}/sites/${projectName}/${projectName}`;
+// Handle ZIPs that contain an extra parent folder
+if (extractedItems.length === 1) {
 
+  const firstFolder = path.join(
+    targetFolder,
+    extractedItems[0]
+  );
 
-      const site = await Site.create({
-        projectName,
-        deployedUrl,
-        folderPath: targetFolder,
-        userId:req.user.id,
+  if (
+    fs.statSync(firstFolder).isDirectory()
+  ) {
+
+    const innerFiles =
+    fs.readdirSync(firstFolder);
+
+    innerFiles.forEach((file) => {
+
+      fs.renameSync(
+        path.join(firstFolder, file),
+        path.join(targetFolder, file)
+      );
+
+    });
+
+    fs.rmdirSync(firstFolder);
+  }
+}
+
+const site = await Site.create({
+  projectName,
+  deployedUrl,
+  folderPath: targetFolder,
+  userId: req.user.id,
 });
 
-      return res.status(200).json({
-        success: true,
-        message:
-          "Project deployed successfully",
+return res.status(200).json({
+  success: true,
+  message:
+    "Project deployed successfully",
 
-        projectName,
-        deployedUrl,
-      });
-    } catch (error) {
+  projectName,
+  deployedUrl,
+});
+
+} catch (error) {
       console.error(error);
 
       return res.status(500).json({
@@ -189,5 +204,5 @@ router.delete("/:id",auth,async (req, res) => {
     }
   }
 );
-
+  
 module.exports = router;

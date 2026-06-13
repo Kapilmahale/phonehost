@@ -99,13 +99,17 @@ function Deploy() {
         <HiOutlinePaperAirplane size={18} />
         Deploy
       </button>
-
-      <button
-        className="action-btn deploy-btn"
-        onClick={deploySite}
-      ></button>
-
     </div>
+
+    {url && (
+  <a
+    href={url}
+    target="_blank"
+    rel="noreferrer"
+  >
+    Open Website
+  </a>
+)}
 
   </div>
 );
