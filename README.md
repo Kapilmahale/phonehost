@@ -8,6 +8,9 @@ The project demonstrates full-stack development, authentication, deployment auto
 
 ---
 
+<img width="887" height="440" alt="image" src="https://github.com/user-attachments/assets/1091aa46-091c-4aee-adb3-05869aaeb0cb" />
+
+
 # Features
 
 ✅ User Registration & Login
