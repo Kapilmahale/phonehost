@@ -25,3 +25,6 @@ node_modules
 
 server/uploads/
 server/websites/
+
+.env
+server/.env
