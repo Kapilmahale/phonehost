@@ -28,7 +28,9 @@ function Register() {
       try {
         const res = await axios.post( "/api/auth/register",form);
 
-        navigate("/login");
+        // navigate("/login");
+        navigate("/dashboard")
+        
       } catch (err) {
         alert(
           err.response.data.message

@@ -8,7 +8,6 @@ const router = express.Router();
 
 
 const { OAuth2Client} = require("google-auth-library");
-
 const client = new OAuth2Client( process.env.GOOGLE_CLIENT_ID);
 
 
@@ -147,14 +146,16 @@ router.post( "/google", async(req,res)=>{
     }
     catch(error){
 
-      console.log(error);
+  console.error("Google Login Error:");
 
-      res.status(500).json({
-        message:
-        "Google Login Failed"
-      });
+  console.error(error);
 
-    }
+  return res.status(500).json({
+    message: error.message,
+    stack: error.stack
+  });
+
+}
 
   }
 );
