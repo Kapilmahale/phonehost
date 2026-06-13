@@ -100,6 +100,11 @@ function Deploy() {
         Deploy
       </button>
 
+      <button
+        className="action-btn deploy-btn"
+        onClick={deploySite}
+      ></button>
+
     </div>
 
   </div>
