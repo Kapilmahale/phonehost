@@ -280,3 +280,83 @@ a {
     font-size: 24px;
   }
 }
+
+
+/* ===== Deploy Header ===== */
+
+.deploy-header {
+  margin-bottom: 40px;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header-spacer {
+  width: 100%;
+}
+
+/* Override existing hero styles */
+
+.hero {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.hero h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  margin: 0;
+
+  font-size: 72px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.hero span {
+  color: #7c4dff;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Better logout button positioning */
+
+.logout-btn {
+  justify-self: end;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .upload-section {
+    flex-direction: column;
+  }
+
+  .logout-btn {
+    justify-self: center;
+  }
+}

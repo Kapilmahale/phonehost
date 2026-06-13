@@ -48,34 +48,59 @@ function Deploy() {
     };
 
   return (
-  <div className="top-actions">
+  <div className="deploy-header">
 
-    <div className="hero">
-          <h1>
-            <FaRocket /> Deploy <span>Website</span>
-          </h1>
-        </div>
+    {/* Title + Logout Row */}
+    <div className="header-row">
 
-    <input
-      type="file"
-      onChange={(e) =>
-        setFile(e.target.files[0])
-      }
-    />
+      <div className="header-spacer"></div>
 
-    <button
-      className="action-btn deploy-btn"
-      onClick={deploySite}
-    >
-      Deploy
-    </button>
+      <div className="hero">
+        <h1>
+          <FaRocket />
+          Deploy <span>Website</span>
+        </h1>
+      </div>
 
-    <button
-      className="action-btn logout-btn"
-      onClick={logout}
-    >
-      Logout
-    </button>
+      <button
+        className="action-btn logout-btn"
+        onClick={logout}
+      >
+        <HiOutlineArrowRightOnRectangle size={18} />
+        Logout
+      </button>
+
+    </div>
+
+    {/* Upload Row */}
+    <div className="upload-section">
+
+      <label className="file-btn">
+        <HiOutlineDocumentText size={18} />
+        Choose File
+
+        <input
+          type="file"
+          hidden
+          onChange={(e) =>
+            setFile(e.target.files[0])
+          }
+        />
+      </label>
+
+      <span className="file-name">
+        {file ? file.name : "No file chosen"}
+      </span>
+
+      <button
+        className="action-btn deploy-btn"
+        onClick={deploySite}
+      >
+        <HiOutlinePaperAirplane size={18} />
+        Deploy
+      </button>
+
+    </div>
 
   </div>
 );
